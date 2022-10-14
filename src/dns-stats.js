@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Given an array of domains, return the object with the appearances of the DNS.
@@ -22,22 +22,23 @@ const { NotImplementedError } = require('../extensions/index.js');
  * }
  *
  */
-function getDNSStats(/*domains*/) {
-  throw new NotImplementedError('Not implemented');
-/*
-  let arr = [];
-  domains.forEach(item => {arr.push(item.split('.').reverse());});
-  domains.sort();
-  return arr;
-  */
+function getDNSStats(domains) {
+  let dns = {};
+
+  domains.forEach((item) => {
+    let arr = item.split(".").reverse();
+    let str = "";
+    arr.forEach((item) => {
+      str += `.${item}`;
+      dns[str] = dns[str] ? dns[str] + 1 : 1;
+    });
+  });
+
+  return dns;
 }
 
 module.exports = {
-  getDNSStats
+  getDNSStats,
 };
-/*
-console.log(getDNSStats([
-  'code.yandex.ru',
-  'music.yandex.ru',
-  'yandex.ru']));
-  */
+
+//console.log(getDNSStats(["code.yandex.ru", "music.yandex.ru", "yandex.ru"]));
