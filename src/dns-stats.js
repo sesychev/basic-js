@@ -40,5 +40,3 @@ function getDNSStats(domains) {
 module.exports = {
   getDNSStats,
 };
-
-//console.log(getDNSStats(["code.yandex.ru", "music.yandex.ru", "yandex.ru"]));
