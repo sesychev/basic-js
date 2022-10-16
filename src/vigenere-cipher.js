@@ -1,6 +1,3 @@
-const {
-  KeySchemaElementFilterSensitiveLog,
-} = require("@aws-sdk/client-dynamodb");
 const { NotImplementedError } = require("../extensions/index.js");
 
 /**
@@ -28,7 +25,6 @@ class VigenereCipheringMachine {
   }
 
   encrypt(message, key) {
-    //throw new NotImplementedError("Not implemented");
     if (message === undefined || key === undefined) {
       throw new Error("Incorrect arguments!");
     }
@@ -47,23 +43,11 @@ class VigenereCipheringMachine {
       letter += "A".charCodeAt(0);
       result += String.fromCharCode(letter);
     }
-    /*
-    result = result.split("");
 
-    for (let i = 0, j = 0; i < origin.length; i++) {
-      if (origin[i].match(regexp)) {
-        origin[i] = result[j];
-        j++;
-      }
-    }
-
-    return this.status ? origin.join("") : origin.reverse().join("");
-    */
     return this.toOrigin(origin, result, regexp);
   }
 
   decrypt(encryptedMessage, key) {
-    //throw new NotImplementedError("Not implemented");
     if (encryptedMessage === undefined || key === undefined) {
       throw new Error("Incorrect arguments!");
     }
@@ -84,18 +68,7 @@ class VigenereCipheringMachine {
       letter += "A".charCodeAt(0);
       result += String.fromCharCode(letter);
     }
-    /*
-    result = result.split("");
 
-    for (let i = 0, j = 0; i < origin.length; i++) {
-      if (origin[i].match(regexp)) {
-        origin[i] = result[j];
-        j++;
-      }
-    }
-    
-    return this.status ? origin.join("") : origin.reverse().join("");
-*/
     return this.toOrigin(origin, result, regexp);
   }
 
