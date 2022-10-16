@@ -28,6 +28,7 @@ class VigenereCipheringMachine {
   }
 
   encrypt(message, key) {
+    //throw new NotImplementedError("Not implemented");
     if (message === undefined || key === undefined) {
       throw new Error("Incorrect arguments!");
     }
@@ -62,6 +63,7 @@ class VigenereCipheringMachine {
   }
 
   decrypt(encryptedMessage, key) {
+    //throw new NotImplementedError("Not implemented");
     if (encryptedMessage === undefined || key === undefined) {
       throw new Error("Incorrect arguments!");
     }
