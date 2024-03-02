@@ -17,19 +17,17 @@ const { NotImplementedError } = require("../extensions/index.js");
  * The result should be 9
  */
 function getMatrixElementsSum(matrix) {
-  let sum = 0;
-  for (let row = 1; row < matrix.length; row++) {
-    for (let column = 0; column <= matrix[row].length - 1; column++) {
-      if (matrix[row - 1][column] !== 0) sum += matrix[row][column];
+  let count = 0;
+
+  for (let i = 1; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (matrix[i - 1][j] !== 0) {
+        count += isNaN(matrix[i][j]) ? 0 : matrix[i][j];
+      }
     }
   }
 
-  return (
-    sum +
-    matrix[0].reduce((a, b) => {
-      return a + b;
-    })
-  );
+  return matrix[0].reduce((a, c) => a + c, 0) + count;
 }
 
 module.exports = {

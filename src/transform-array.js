@@ -17,6 +17,7 @@ function transform(arr) {
   if (!Array.isArray(arr)) {
     throw new Error("'arr' parameter must be an instance of the Array!");
   }
+
   if (arr.length === 0) {
     return arr;
   }
@@ -28,19 +29,22 @@ function transform(arr) {
       temp[i] = undefined;
       temp[i - 1] = undefined;
     }
+
     if (temp[i] === "--discard-next") {
       temp[i] = undefined;
       temp[i + 1] = undefined;
     }
+
     if (temp[i] === "--double-next") {
       temp[i] = temp[i + 1];
     }
+
     if (temp[i] === "--double-prev") {
       temp[i] = temp[i - 1];
     }
   }
 
-  return temp.filter((item) => item !== undefined);
+  return temp.filter((item) => item);
 }
 
 module.exports = {

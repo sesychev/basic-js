@@ -12,48 +12,26 @@ const { NotImplementedError } = require("../extensions/index.js");
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 function getCommonCharacterCount(s1, s2) {
-  let arr1 = s1
+  let a = s1
     .split("")
-    .sort()
-    .filter((item) => {
-      return s2.split("").includes(item);
-    });
-  let arr2 = s2
+    .sort((a, b) => a.localeCompare(b))
+    .filter((item) => s2.includes(item));
+
+  let b = s2
     .split("")
-    .sort()
-    .filter((item) => {
-      return s1.split("").includes(item);
-    });
+    .sort((a, b) => a.localeCompare(b))
+    .filter((item) => s1.includes(item));
 
-  let a1 = myCount(arr1);
-  let a2 = myCount(arr2);
+  return a.length !== b.length
+    ? Math.min(a.length, b.length)
+    : a
+        .map((item, i) => {
+          let count = 0;
+          if (item === b[i]) count++;
 
-  function myCount(arr) {
-    let count = 0;
-    let res = [];
-
-    for (let i = 0; i <= arr.length - 1; i++) {
-      if (arr[i] === arr[i + 1]) count++;
-      else {
-        res.push(count + 1);
-        count = 0;
-      }
-    }
-
-    return res;
-  }
-
-  function myCompare(ar1, ar2) {
-    let k = 0;
-    for (let j = 0; j < ar1.length; j++) {
-      if (ar1[j] < ar2[j]) k += ar1[j];
-      else k += ar2[j];
-    }
-
-    return k;
-  }
-
-  return myCompare(a1, a2);
+          return count;
+        })
+        .reduce((a, c) => a + c, 0);
 }
 
 module.exports = {
